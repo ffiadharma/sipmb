@@ -29,17 +29,10 @@ class Index extends BaseController
         //grafik pertama
         $result = null;
         foreach ($prodi as $p => $prod) {
-            // if ($prod['jumlah'] > $sum) {
-            //     $sum = $prod['jumlah'];
-            //     $sliced = true;
-            //     $selected = true;
-            // }
             $result[$p] = [
                 "name"  => $prod['nama_prodi'],
                 "jumlah" => $prod['jumlah'],
                 "y"     => $prod['size'],
-                // "sliced" => $sliced,
-                // 'selected' => $selected
             ];
         }
 
@@ -65,13 +58,61 @@ class Index extends BaseController
                 "name"  => $prod['nama_prodi'],
                 "jumlah" => $prod['jumlah2'],
                 "y"     => $prod['size'],
-                // "sliced" => $sliced,
-                // 'selected' => $selected
             ];
         }
 
         $data['pendaftar'] = $prodi;
         $data['grafik2'] = json_encode($hasil);
         $this->render('index/grafik_dua', $data);
+    }
+
+    public function pendaftarprestasi()
+    {
+        $data['title'] = 'Grafik Berdasarkan Prestasi';
+        $prestasi = $this->m_pmb->listPrestasi();
+        foreach ($prestasi as $key => $p) {
+            $prestasi[$key]['jumlah'] = $this->m_pmb->jumlahPendaftarPrestasi($p['tingkat_prestasi']);
+            $prestasi[$key]['jumlah3'] = $this->m_pmb->jumlahPendaftarPrestasi($p['tingkat_prestasi']);
+            $prestasi[$key]['size'] = rand(10, 30);
+        }
+
+        //grafik ketiga
+        $hasil = null;
+        foreach ($prestasi as $p => $pres) {
+            $hasil[$p] = [
+                "name"  => $pres['tingkat_prestasi'],
+                "jumlah" => $pres['jumlah3'],
+                "y"     => $pres['size'],
+            ];
+        }
+
+        $data['pendaftar_prestasi'] = $prestasi;
+        $data['grafik3'] = json_encode($hasil);
+        $this->render('index/grafik_tiga', $data);
+    }
+
+    public function pendaftarjalurmasuk()
+    {
+        $data['title'] = 'Grafik Berdasarkan Jalur Masuk';
+        $jalurmasuk = $this->m_pmb->listJalurMasuk();
+        foreach ($jalurmasuk as $key => $p) {
+            $jalurmasuk[$key]['jumlah'] = $this->m_pmb->jumlahPendaftarJalurMasuk($p['id_jalur']);
+            $jalurmasuk[$key]['jumlah4'] = $this->m_pmb->jumlahPendaftarJalurMasuk($p['id_jalur']);
+            $jalurmasuk[$key]['size'] = rand(10, 30);
+        }
+
+        //grafik keempat
+        $hasil = null;
+        foreach ($jalurmasuk as $p => $jalurmas) {
+            $hasil[$p] = [
+                "name"  => $jalurmas['nama_jalur'],
+                "jumlah" => $jalurmas['jumlah4'],
+                "y"     => $jalurmas['size'],
+            ];
+        }
+
+        $data['pendaftar'] = $jalurmasuk;
+        $data['grafik4'] = json_encode($hasil);
+        $this->render('index/grafik_empat', $data);
     }
 }

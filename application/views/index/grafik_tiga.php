@@ -10,9 +10,12 @@
     </div>
 </main>
 <script>
-getGrafikPie('pendaftar', <?= $grafik2 ?>, 'Grafik Pendaftar Berdasarkan Prodi Pilihan 2');
+getGrafikPie('pendaftar', <?= $grafik3 ?>, 'Grafik Pendaftar Berdasarkan Pilihan Jalur Masuk');
 
 function getGrafikPie(selector, data, title) {
+    var nasional = 570;
+    var internasional = 115;
+
     Highcharts.chart(selector, {
         chart: {
             plotBackgroundColor: null,
@@ -44,7 +47,15 @@ function getGrafikPie(selector, data, title) {
         series: [{
             name: 'Jumlah Pendaftar',
             colorByPoint: true,
-            data: data
+            data: [{
+                name: 'Nasional',
+                jumlah: nasional,
+                y: Math.floor(Math.random() * 30) + 1,
+            }, {
+                name: 'Internasional',
+                jumlah: internasional,
+                y: Math.floor(Math.random() * 30) + 1,
+            }],
         }]
     });
 }
