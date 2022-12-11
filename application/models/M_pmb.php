@@ -11,11 +11,6 @@ class M_pmb extends CI_Model
         return $this->db->get('prodi')->result_array();
     }
 
-    public function listPendaftarPrestasi()
-    {
-        return $this->db->get('pendaftar_prestasi')->result_array();
-    }
-
     public function listPrestasi()
     {
         return $this->db->get('pendaftar_prestasi')->result_array();
@@ -24,6 +19,16 @@ class M_pmb extends CI_Model
     public function listJalurMasuk()
     {
         return $this->db->get('jalur_masuk')->result_array();
+    }
+
+    public function listBank()
+    {
+        return $this->db->get('bank')->result_array();
+    }
+
+    public function listBayar()
+    {
+        return $this->db->get('pendaftar')->result_array();
     }
 
     public function jumlahPendaftarProdi1($idProdi)
@@ -63,6 +68,28 @@ class M_pmb extends CI_Model
     {
         $result = 0;
         $this->db->where('id_jalur', $id_jalur);
+        $data = $this->db->get('pendaftar')->result_array();
+        if (!empty($data)) {
+            $result = count($data);
+        }
+        return $result;
+    }
+
+    public function jumlahPendapatanBank($idj)
+    {
+        $result = 0;
+        $this->db->where('id_bank', $idj);
+        $data = $this->db->get('bank')->result_array();
+        if (!empty($data)) {
+            $result = count($data);
+        }
+        return $result;
+    }
+
+    public function jumlahPendaftarBayar($is_bayar)
+    {
+        $result = 0;
+        $this->db->where('is_bayar', $is_bayar);
         $data = $this->db->get('pendaftar')->result_array();
         if (!empty($data)) {
             $result = count($data);

@@ -111,13 +111,13 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= site_url('index/pendaftarjalurmasuk') ?>">
+                            <a class="nav-link" href="<?= site_url('index/pendapatanbank') ?>">
                                 <span data-feather="file" class="align-text-bottom"></span>
                                 Pendapatan Bank
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= site_url('index/pendaftarjalurmasuk') ?>">
+                            <a class="nav-link" href="<?= site_url('index/pendaftarbayar') ?>">
                                 <span data-feather="file" class="align-text-bottom"></span>
                                 Status Pembayaran
                             </a>
