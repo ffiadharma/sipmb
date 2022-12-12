@@ -10,7 +10,7 @@
     </div>
 </main>
 <script>
-getGrafikPie('pendaftar', <?= $grafik3 ?>, 'Grafik Pendaftar Berdasarkan Pilihan Jalur Masuk');
+getGrafikPie('pendaftar', <?= $grafik3 ?>, 'Grafik Pendaftar Berdasarkan Tingkat Prestasi');
 
 function getGrafikPie(selector, data, title) {
     var nasional = 570;
