@@ -117,7 +117,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= site_url('index/pendaftarbayar') ?>">
+                            <a class="nav-link" href="<?= site_url('index/jumlahyangbayarbelum') ?>">
                                 <span data-feather="file" class="align-text-bottom"></span>
                                 Status Pembayaran
                             </a>
